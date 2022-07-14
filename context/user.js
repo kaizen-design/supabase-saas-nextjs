@@ -7,14 +7,12 @@ const Context = createContext();
 
 const Provider = ({ children }) => {
   const router = useRouter();
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(supabase.auth.user());
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const getUserProfile = async () => {
       const sessionUser = supabase.auth.user();
-
-      console.log(sessionUser)
 
       if (sessionUser) {
         const { data: profile } = await supabase.from('profile').select('*').eq('id', sessionUser.id).single();
