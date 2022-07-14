@@ -23,7 +23,7 @@ const handler = async (req, res) => {
 
   const session = await stripe.billingPortal.sessions.create({
     customer: stripe_customer,
-    return_url: 'http://localhost:3000/dashboard'
+    return_url: `${process.env.CLIENT_URL}/dashboard`
   });
 
   res.send({
