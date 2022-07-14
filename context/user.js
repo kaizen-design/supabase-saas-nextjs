@@ -7,7 +7,7 @@ const Context = createContext();
 
 const Provider = ({ children }) => {
   const router = useRouter();
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(supabase.auth.user());
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
