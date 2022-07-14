@@ -11,6 +11,11 @@ const Nav = () => {
       <Link href="/pricing">
         <a className="ml-5 hover:border-b">Pricing</a>
       </Link>
+      {!!user && (
+        <Link href="/dashboard">
+          <a className="ml-5 hover:border-b">Dashboard</a>
+        </Link>
+      )}
       {!isLoading && (
         <Link href={user ? '/logout' : '/login'}>
           <a className="ml-auto btn-primary">{user ? 'Logout' : 'Login'}</a>

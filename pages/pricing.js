@@ -2,6 +2,7 @@ import initStripe from 'stripe';
 import { useUser } from '../context/user';
 import axios from 'axios';
 import { loadStripe } from '@stripe/stripe-js';
+import Link from 'next/link';
 
 const Pricing = ({ plans }) => {  
   const { user, login, isLoading } = useUser();
@@ -19,7 +20,7 @@ const Pricing = ({ plans }) => {
   return (
     <div className='w-full max-w-3xl mx-auto py-16 flex justify-around'>
       {plans.map((plan) => (
-        <div key={plan.id} className="w-80 h-40 rounded shadow px-6 py-6 flex flex-col">
+        <div key={plan.id} className="w-80 h-40 rounded shadow px-6 py-6 flex flex-col hover:bg-gray-100">
           <h2 className="text-xl">{plan.name}</h2>
           <p className='text-gray-500'>${plan.price / 100} / {plan.interval}</p>
           {!isLoading && (
@@ -35,9 +36,11 @@ const Pricing = ({ plans }) => {
                 </button>
               )}
               {showManageSubscriptionButton && (
-                <button className='btn-primary'>
-                  Manage Subscription
-                </button>
+                <Link href="/dashboard">
+                  <a className='btn-primary'>
+                    Manage Subscription
+                  </a>
+                </Link>  
               )}
             </div>  
           )}          
