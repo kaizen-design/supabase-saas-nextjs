@@ -19,14 +19,26 @@ const Pricing = ({ plans }) => {
   return (
     <div className='w-full max-w-3xl mx-auto py-16 flex justify-around'>
       {plans.map((plan) => (
-        <div key={plan.id} className="w-80 h-40 rounded shadow px-6 py-6">
+        <div key={plan.id} className="w-80 h-40 rounded shadow px-6 py-6 flex flex-col">
           <h2 className="text-xl">{plan.name}</h2>
           <p className='text-gray-500'>${plan.price / 100} / {plan.interval}</p>
           {!isLoading && (
-            <div>
-              {showSubscribeButton && <button onClick={processSubscription(plan.id)}>Subscribe</button>}
-              {showCreateAccountButton && <button onClick={login}>Create Account</button>}
-              {showManageSubscriptionButton && <button>Manage Subscription</button>}
+            <div className='mt-auto'>
+              {showSubscribeButton && (
+                <button className='btn-primary' onClick={processSubscription(plan.id)}>
+                  Subscribe
+                </button>
+              )}
+              {showCreateAccountButton && (
+                <button className='btn-primary' onClick={login}>
+                  Create Account
+                </button>
+              )}
+              {showManageSubscriptionButton && (
+                <button className='btn-primary'>
+                  Manage Subscription
+                </button>
+              )}
             </div>  
           )}          
         </div>
