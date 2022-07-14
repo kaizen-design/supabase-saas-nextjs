@@ -1,7 +1,6 @@
 import initStripe from 'stripe';
 
-const Pricing = ({ plans }) => {
-  console.log({plans})
+const Pricing = ({ plans }) => {  
   return (
     <div className='w-full max-w-3xl mx-auto py-16 flex justify-around'>
       {plans.map((plan) => (
