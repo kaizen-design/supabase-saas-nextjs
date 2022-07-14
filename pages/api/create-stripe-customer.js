@@ -1,5 +1,5 @@
 import initStripe from 'stripe';
-import { supabase } from '../../utils/supabase';
+import { getServiceSupabase } from '../../utils/supabase';
 
 const handler = async (req, res) => {
   if (req.query.API_ROUTE_SECRET !== process.env.API_ROUTE_SECRET) {
@@ -10,6 +10,8 @@ const handler = async (req, res) => {
   const customer = await stripe.customers.create({
     email: req.body.record.email
   });
+
+  const supabase = getServiceSupabase();
 
   await supabase
           .from('profile')
